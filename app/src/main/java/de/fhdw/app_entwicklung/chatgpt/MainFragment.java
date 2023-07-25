@@ -7,64 +7,43 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.preference.PreferenceManager;
-
-import java.util.Locale;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import de.fhdw.app_entwicklung.chatgpt.openai.ChatGpt;
-import de.fhdw.app_entwicklung.chatgpt.openai.PrefsFacade;
-import de.fhdw.app_entwicklung.chatgpt.speech.LaunchSpeechRecognition;
-import de.fhdw.app_entwicklung.chatgpt.speech.Speak;
 
 public class MainFragment extends Fragment {
 
-    Speak speak;
-
-    private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> someActivityResultLauncher = registerForActivityResult(
-            new LaunchSpeechRecognition(),
-            query -> {
-                if (query != null) {
-                    ChatGpt c = new ChatGpt(new PrefsFacade(requireContext()).getApiToken());
-                    ((TextView)getView().findViewById(R.id.textView)).append(query);
-                    Executor executor = Executors.newFixedThreadPool(1);
-                    executor.execute(() -> {
-                        String response = c.getChatCompletion(query);
-                        ((TextView)getView().findViewById(R.id.textView)).append("\n");
-                        ((TextView)getView().findViewById(R.id.textView)).append(response + "\n");
-                        Speak.Ausgabe(response);
-
-                    });
-                }
-            });
-
     public MainFragment() {
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.fragment_main, container, false);
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button b = view.findViewById(R.id.button);
-        speak = new Speak(this.getContext());
 
-        b.setOnClickListener(v-> someActivityResultLauncher.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
+        getButton().setOnClickListener(v -> MainActivity.backgroundExecutorService.execute(() ->
+        {
+            ChatGpt chatGpt = new ChatGpt("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");
+            String answer = chatGpt.getChatCompletion("What's the answer to the universe and everything?");
+            getTextView().setText(answer);
+        }));
     }
+
+    private TextView getTextView() {
+        //noinspection ConstantConditions
+        return getView().findViewById(R.id.textView);
+    }
+
+    private Button getButton() {
+        //noinspection ConstantConditions
+        return getView().findViewById(R.id.button_ask);
+    }
+
 }
