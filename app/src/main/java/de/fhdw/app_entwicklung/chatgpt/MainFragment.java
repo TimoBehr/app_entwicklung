@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,7 +38,7 @@ public class MainFragment extends Fragment {
 
         b.setOnClickListener(v->{
                 LocalDateTime d = LocalDateTime.now();
-                Toast.makeText(getActivity(), "Button clicked on <" + d.toLocalDate() + " und " + d.toLocalTime() + ">", Toast.LENGTH_SHORT).show();
+            ((TextView)getView().findViewById(R.id.textView)).append("Button clicked on <" + d.toLocalDate() + " und " + d.getHour() + ":" + d.getMinute() + ":" + d.getSecond() + ">\n");
         });
     }
 }
