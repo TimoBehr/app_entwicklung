@@ -16,6 +16,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.fragment.app.Fragment;
 
 import java.util.concurrent.Executor;
@@ -25,6 +26,22 @@ import de.fhdw.app_entwicklung.chatgpt.openai.ChatGpt;
 import de.fhdw.app_entwicklung.chatgpt.speech.LaunchSpeechRecognition;
 
 public class MainFragment extends Fragment {
+
+    private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> someActivityResultLauncher = registerForActivityResult(
+            new LaunchSpeechRecognition(),
+            query -> {
+                ((TextView)getView().findViewById(R.id.textView)).append(query);
+                ChatGpt c = new ChatGpt("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");
+                Executor executor = Executors.newFixedThreadPool(1);
+                executor.execute(new Runnable(){
+                    @Override
+                    public void run() {
+                        String response = c.getChatCompletion(query);
+                        ((TextView)getView().findViewById(R.id.textView)).append("\n");
+                        ((TextView)getView().findViewById(R.id.textView)).append(response + "\n");
+                    }
+                });
+            });
 
     public MainFragment() {
 
@@ -38,32 +55,17 @@ public class MainFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button b = view.findViewById(R.id.button);
-        ChatGpt c = new ChatGpt("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");
-        Executor executor = Executors.newFixedThreadPool(1);
 
         b.setOnClickListener(v->{
-            executor.execute(new Runnable(){
-
-                @Override
-                public void run() {
-                    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
-                            new ActivityResultContracts.StartActivityForResult(),
-                            new ActivityResultCallback<ActivityResult>() {
-                                @Override
-                                public void onActivityResult(ActivityResult result) {
-                                    if (result.getResultCode() == Activity.RESULT_OK) {
-                                        // Here, no request code
-                                        Intent data = result.getData();
-                                        String response = c.getChatCompletion(data.getDataString());
-                                        ((TextView)getView().findViewById(R.id.textView)).append(response + "\n");
-                                    }
-                                }
-                            });
-                }
-            });
+                    someActivityResultLauncher.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs());
         });
     }
 }
