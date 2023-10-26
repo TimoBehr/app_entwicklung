@@ -17,6 +17,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDateTime;
 import java.util.Date;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class MainFragment extends Fragment {
 
@@ -34,11 +36,19 @@ public class MainFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button b = view.findViewById(R.id.fragment_button);
+        Button b = view.findViewById(R.id.button);
+        ChatGpt c = new ChatGpt("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");
+        Executor executor = Executors.newFixedThreadPool(1);
 
         b.setOnClickListener(v->{
-                LocalDateTime d = LocalDateTime.now();
-            ((TextView)getView().findViewById(R.id.textView)).append("Button clicked on <" + d.toLocalDate() + " und " + d.getHour() + ":" + d.getMinute() + ":" + d.getSecond() + ">\n");
+            executor.execute(new Runnable(){
+
+                @Override
+                public void run() {
+                    String response = c.getChatCompletion("Stelle mir eine Rechenaufgabe");
+                    ((TextView)getView().findViewById(R.id.textView)).append(response + "\n");
+                }
+            });
         });
     }
 }
