@@ -1,4 +1,4 @@
-package de.fhdw.app_entwicklung.chatgpt;
+package de.fhdw.app_entwicklung.chatgpt.openai;
 
 import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatCompletionResult;
