@@ -1,6 +1,7 @@
 package de.fhdw.app_entwicklung.chatgpt;
 
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import java.util.concurrent.Executors;
 
 import de.fhdw.app_entwicklung.chatgpt.openai.ChatGpt;
 import de.fhdw.app_entwicklung.chatgpt.speech.LaunchSpeechRecognition;
+import de.fhdw.app_entwicklung.chatgpt.speech.Speak;
 
 public class MainFragment extends Fragment {
 
@@ -31,6 +33,8 @@ public class MainFragment extends Fragment {
                     String response = c.getChatCompletion(query);
                     ((TextView)getView().findViewById(R.id.textView)).append("\n");
                     ((TextView)getView().findViewById(R.id.textView)).append(response + "\n");
+                    Speak speak = new Speak(this.getContext());
+                    Speak.Ausgabe(response);
                 });
             });
 
