@@ -22,7 +22,8 @@ import de.fhdw.app_entwicklung.chatgpt.speech.Speak;
 
 public class MainFragment extends Fragment {
 
-    ChatGpt c = new ChatGpt("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");
+    ChatGpt c = new ChatGpt("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");
+    Speak speak;
 
     private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> someActivityResultLauncher = registerForActivityResult(
             new LaunchSpeechRecognition(),
@@ -33,7 +34,6 @@ public class MainFragment extends Fragment {
                     String response = c.getChatCompletion(query);
                     ((TextView)getView().findViewById(R.id.textView)).append("\n");
                     ((TextView)getView().findViewById(R.id.textView)).append(response + "\n");
-                    Speak speak = new Speak(this.getContext());
                     Speak.Ausgabe(response);
                 });
             });
@@ -58,6 +58,7 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button b = view.findViewById(R.id.button);
+        speak = new Speak(this.getContext());
 
         b.setOnClickListener(v-> someActivityResultLauncher.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs()));
     }
