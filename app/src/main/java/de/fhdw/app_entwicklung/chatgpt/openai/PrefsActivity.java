@@ -2,7 +2,9 @@ package de.fhdw.app_entwicklung.chatgpt.openai;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
@@ -35,8 +37,14 @@ public class PrefsActivity extends AppCompatActivity {
         }
     }
 
+
+
     @Override
-    public void onBackPressed() {
-        startActivity(new Intent(this, MainActivity.class));
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

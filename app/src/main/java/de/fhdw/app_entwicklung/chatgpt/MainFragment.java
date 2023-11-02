@@ -18,6 +18,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import de.fhdw.app_entwicklung.chatgpt.openai.ChatGpt;
+import de.fhdw.app_entwicklung.chatgpt.openai.PrefsFacade;
 import de.fhdw.app_entwicklung.chatgpt.speech.LaunchSpeechRecognition;
 import de.fhdw.app_entwicklung.chatgpt.speech.Speak;
 
@@ -29,9 +30,7 @@ public class MainFragment extends Fragment {
             new LaunchSpeechRecognition(),
             query -> {
                 if (query != null) {
-                    ChatGpt c = new ChatGpt(PreferenceManager
-                            .getDefaultSharedPreferences(requireContext())
-                            .getString("api_token", ""));
+                    ChatGpt c = new ChatGpt(new PrefsFacade(requireContext()).getApiToken());
                     ((TextView)getView().findViewById(R.id.textView)).append(query);
                     Executor executor = Executors.newFixedThreadPool(1);
                     executor.execute(() -> {
