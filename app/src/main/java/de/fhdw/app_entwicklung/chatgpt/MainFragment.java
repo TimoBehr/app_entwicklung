@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
+import java.util.Locale;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -65,6 +66,6 @@ public class MainFragment extends Fragment {
         Button b = view.findViewById(R.id.button);
         speak = new Speak(this.getContext());
 
-        b.setOnClickListener(v-> someActivityResultLauncher.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs()));
+        b.setOnClickListener(v-> someActivityResultLauncher.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
     }
 }

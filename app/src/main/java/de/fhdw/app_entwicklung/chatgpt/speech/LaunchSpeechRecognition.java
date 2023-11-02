@@ -15,10 +15,16 @@ public class LaunchSpeechRecognition extends ActivityResultContract<LaunchSpeech
 
     @NonNull
     @Override
-    public Intent createIntent(@NonNull Context context, SpeechRecognitionArgs speechRecognitionArgs) {
-        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak something");
+    public Intent createIntent(@NonNull Context context, SpeechRecognitionArgs args) {
+        Intent intent
+                = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
+                args.locale.toString());
+        if (args.prompt != null) {
+            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, args.prompt);
+        }
         return intent;
     }
 
