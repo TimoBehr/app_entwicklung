@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class LaunchSpeechRecognition extends ActivityResultContract<LaunchSpeechRecognition.SpeechRecognitionArgs, String> {
 
@@ -34,8 +35,18 @@ public class LaunchSpeechRecognition extends ActivityResultContract<LaunchSpeech
 
     public static class SpeechRecognitionArgs
     {
-        public SpeechRecognitionArgs()
+        public final Locale locale;
+        public final String prompt;
+
+        public SpeechRecognitionArgs(Locale locale)
         {
+            this(locale, null);
+        }
+
+        public SpeechRecognitionArgs(Locale locale, String prompt)
+        {
+            this.locale = locale;
+            this.prompt = prompt;
         }
     }
 }
