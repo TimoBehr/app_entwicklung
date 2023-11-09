@@ -18,6 +18,7 @@ import de.fhdw.app_entwicklung.chatgpt.model.Author;
 import de.fhdw.app_entwicklung.chatgpt.model.Chat;
 import de.fhdw.app_entwicklung.chatgpt.model.Message;
 import de.fhdw.app_entwicklung.chatgpt.openai.ChatGpt;
+import de.fhdw.app_entwicklung.chatgpt.openai.PrefsFacade;
 import de.fhdw.app_entwicklung.chatgpt.speech.LaunchSpeechRecognition;
 import de.fhdw.app_entwicklung.chatgpt.speech.TextToSpeechTool;
 

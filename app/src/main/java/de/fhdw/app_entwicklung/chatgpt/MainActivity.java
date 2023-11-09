@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import de.fhdw.app_entwicklung.chatgpt.openai.PrefsActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final ExecutorService backgroundExecutorService = Executors.newFixedThreadPool(4);
