@@ -61,10 +61,13 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        if (savedInstanceState != null){
+            chat = savedInstanceState.getParcelable("chat");
+        }else {
+            chat = new Chat();
+        }
         prefs = new PrefsFacade(requireContext());
         textToSpeech = new TextToSpeechTool(requireContext(), Locale.GERMAN);
-        chat = new Chat();
-
         getAskButton().setOnClickListener(v ->
                 getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
     }
@@ -74,6 +77,12 @@ public class MainFragment extends Fragment {
         super.onPause();
 
         textToSpeech.stop();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelable("chat", chat);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
