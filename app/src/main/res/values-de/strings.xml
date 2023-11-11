@@ -4,4 +4,7 @@
     <string name="settings">Einstellungen</string>
     <string name="textView">textView</string>
     <string name="texteingabe">Texteingabe</string>
+    <string name="login">Login</string>
+    <string name="name">Name</string>
+    <string name="best_tigen">Bestätigen</string>
 </resources>

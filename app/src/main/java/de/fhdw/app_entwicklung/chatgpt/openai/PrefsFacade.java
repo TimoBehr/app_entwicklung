@@ -13,9 +13,14 @@ public class PrefsFacade {
     }
 
     public String getApiToken(){
-
         return PreferenceManager
                 .getDefaultSharedPreferences(context)
                 .getString("api_token", "");
+    }
+
+    public String getUserName() {
+        return PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getString("userName", "");
     }
 }

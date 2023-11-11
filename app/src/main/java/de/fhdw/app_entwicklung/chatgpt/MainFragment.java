@@ -36,6 +36,8 @@ public class MainFragment extends Fragment {
     private TextToSpeechTool textToSpeech;
     private Chat chat;
 
+    private String userName;
+
     private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> getTextFromSpeech = registerForActivityResult(
             new LaunchSpeechRecognition(),
             query -> {
@@ -49,9 +51,9 @@ public class MainFragment extends Fragment {
     }
 
     public void openAiRequest(String query){
-        chat.addMessage(new Message(Author.User, query));
-        String name = "User" + ": ";
-        Spannable user = new SpannableString(name);
+        chat.addMessage(new Message(Author.User, userName, query));
+        userName = prefs.getUserName() + ": ";
+        Spannable user = new SpannableString(userName);
         user.setSpan(new ForegroundColorSpan(Color.parseColor("#006400")), 0, user.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         getTextView().append(user);
         getTextView().append(query);
@@ -61,7 +63,7 @@ public class MainFragment extends Fragment {
             ChatGpt chatGpt = new ChatGpt(apiToken);
             String answer = chatGpt.getChatCompletion(chat);
 
-            chat.addMessage(new Message(Author.Assistant, answer));
+            chat.addMessage(new Message(Author.Assistant,"ChatGPT", answer));
             requireActivity().runOnUiThread(() -> {
                 getTextView().append(CHAT_SEPARATOR);
                 Spannable text = new SpannableString("ChatGPT: ");
@@ -91,8 +93,12 @@ public class MainFragment extends Fragment {
         }
         prefs = new PrefsFacade(requireContext());
         textToSpeech = new TextToSpeechTool(requireContext(), Locale.GERMAN);
-        getAskButton().setOnClickListener(v ->
-                getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
+        getAskButton().setOnClickListener(v -> {
+            getPlainTextField().clearFocus();
+            if (!getPlainTextField().getText().toString().trim().equals("")){
+                openAiRequest(getPlainTextField().getText().toString());
+                getPlainTextField().setText("");
+            }else getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN));});
 
         getPlainTextField().setOnKeyListener((view1, i, keyEvent) -> {
             if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) &&
