@@ -1,10 +1,16 @@
 package de.fhdw.app_entwicklung.chatgpt;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -33,23 +39,39 @@ public class MainFragment extends Fragment {
     private final ActivityResultLauncher<LaunchSpeechRecognition.SpeechRecognitionArgs> getTextFromSpeech = registerForActivityResult(
             new LaunchSpeechRecognition(),
             query -> {
-                chat.addMessage(new Message(Author.User, query));
-                getTextView().append(query);
-
-                MainActivity.backgroundExecutorService.execute(() -> {
-                    String apiToken = prefs.getApiToken();
-                    ChatGpt chatGpt = new ChatGpt(apiToken);
-                    String answer = chatGpt.getChatCompletion(chat);
-
-                    chat.addMessage(new Message(Author.Assistant, answer));
-                    getTextView().append(CHAT_SEPARATOR);
-                    getTextView().append(answer);
-                    textToSpeech.speak(answer);
-                });
+                if(query != null){
+                    openAiRequest(query);
+                }
             });
 
     public MainFragment() {
-        //
+
+    }
+
+    public void openAiRequest(String query){
+        chat.addMessage(new Message(Author.User, query));
+        String name = "User" + ": ";
+        Spannable user = new SpannableString(name);
+        user.setSpan(new ForegroundColorSpan(Color.parseColor("#006400")), 0, user.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        getTextView().append(user);
+        getTextView().append(query);
+
+        MainActivity.backgroundExecutorService.execute(() -> {
+            String apiToken = prefs.getApiToken();
+            ChatGpt chatGpt = new ChatGpt(apiToken);
+            String answer = chatGpt.getChatCompletion(chat);
+
+            chat.addMessage(new Message(Author.Assistant, answer));
+            requireActivity().runOnUiThread(() -> {
+                getTextView().append(CHAT_SEPARATOR);
+                Spannable text = new SpannableString("ChatGPT: ");
+                text.setSpan(new ForegroundColorSpan(Color.parseColor("#8b0000")), 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                getTextView().append(text);
+                getTextView().append(answer);
+                textToSpeech.speak(answer);
+                getTextView().append(CHAT_SEPARATOR);
+            });
+        });
     }
 
     @Override
@@ -71,6 +93,16 @@ public class MainFragment extends Fragment {
         textToSpeech = new TextToSpeechTool(requireContext(), Locale.GERMAN);
         getAskButton().setOnClickListener(v ->
                 getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN)));
+
+        getPlainTextField().setOnKeyListener((view1, i, keyEvent) -> {
+            if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) &&
+                    (i == KeyEvent.KEYCODE_ENTER)) {
+                openAiRequest(getPlainTextField().getText().toString());
+                getPlainTextField().setText("");
+                return true;
+            }
+            return false;
+        });
     }
 
     @Override
@@ -96,12 +128,17 @@ public class MainFragment extends Fragment {
 
     private TextView getTextView() {
         //noinspection ConstantConditions
-        return getView().findViewById(R.id.textView);
+        return getView().findViewById(R.id.ausgabeView);
     }
 
     private Button getAskButton() {
         //noinspection ConstantConditions
         return getView().findViewById(R.id.button_ask);
+    }
+
+    private EditText getPlainTextField() {
+        //noinspection ConstantConditions
+        return getView().findViewById(R.id.plainText);
     }
 
 }

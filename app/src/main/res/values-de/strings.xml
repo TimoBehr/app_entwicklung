@@ -2,4 +2,6 @@
 <resources>
     <string name="ask">Fragen</string>
     <string name="settings">Einstellungen</string>
+    <string name="textView">textView</string>
+    <string name="texteingabe">Texteingabe</string>
 </resources>
