@@ -49,6 +49,7 @@ public class MainFragment extends Fragment {
             });
 
     public MainFragment() {
+        //final lecture state
     }
 
     @Override
