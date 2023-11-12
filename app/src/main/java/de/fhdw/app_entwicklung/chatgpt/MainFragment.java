@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.List;
 import java.util.Locale;
 
 import de.fhdw.app_entwicklung.chatgpt.model.Author;
@@ -53,9 +54,7 @@ public class MainFragment extends Fragment {
     public void openAiRequest(String query){
         userName = prefs.getUserName() + ": ";
         chat.addMessage(new Message(Author.User, userName, query));
-        Spannable user = new SpannableString(userName);
-        user.setSpan(new ForegroundColorSpan(Color.parseColor("#006400")), 0, user.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        getTextView().append(user);
+        getTextView().append(colorChange(userName, "#006400"));
         getTextView().append(query);
 
         MainActivity.backgroundExecutorService.execute(() -> {
@@ -63,12 +62,10 @@ public class MainFragment extends Fragment {
             ChatGpt chatGpt = new ChatGpt(apiToken);
             String answer = chatGpt.getChatCompletion(chat);
 
-            chat.addMessage(new Message(Author.Assistant,"ChatGPT", answer));
+            chat.addMessage(new Message(Author.Assistant,"ChatGPT: ", answer));
             requireActivity().runOnUiThread(() -> {
                 getTextView().append(CHAT_SEPARATOR);
-                Spannable text = new SpannableString("ChatGPT: ");
-                text.setSpan(new ForegroundColorSpan(Color.parseColor("#8b0000")), 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                getTextView().append(text);
+                getTextView().append(colorChange("ChatGPT: ", "#8b0000"));
                 getTextView().append(answer);
                 textToSpeech.speak(answer);
                 getTextView().append(CHAT_SEPARATOR);
@@ -109,7 +106,7 @@ public class MainFragment extends Fragment {
             }
             return false;
         });
-
+        updateTextView();
     }
 
     @Override
@@ -131,6 +128,34 @@ public class MainFragment extends Fragment {
         textToSpeech = null;
 
         super.onDestroy();
+    }
+
+    private void updateTextView() {
+        getTextView().setText("");
+        List<Message> messages = chat.getMessages();
+        if (!messages.isEmpty()) {
+            getTextView().append(colorChange(messages.get(0).authorName, "#006400"));
+            getTextView().append(toString(messages.get(0)));
+            for (int i = 1; i < messages.size(); i++) {
+                getTextView().append(CHAT_SEPARATOR);
+                if (messages.get(i).authorName.equals("ChatGPT: ")){
+                    getTextView().append(colorChange(messages.get(i).authorName, "#8b0000"));
+                }else {
+                    getTextView().append(colorChange(messages.get(i).authorName, "#006400"));
+                }
+                getTextView().append(toString(messages.get(i)));
+            }
+        }
+    }
+
+    public Spannable colorChange(String text, String color){
+        Spannable span = new SpannableString(text);
+        span.setSpan(new ForegroundColorSpan(Color.parseColor(color)), 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return span;
+    }
+
+    private CharSequence toString(Message message) {
+        return message.message;
     }
 
     private TextView getTextView() {
