@@ -109,6 +109,7 @@ public class MainFragment extends Fragment {
             }
             return false;
         });
+
     }
 
     @Override
@@ -120,8 +121,8 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putParcelable("chat", chat);
         super.onSaveInstanceState(outState);
+        outState.putParcelable("chat", chat);
     }
 
     @Override
