@@ -51,8 +51,8 @@ public class MainFragment extends Fragment {
     }
 
     public void openAiRequest(String query){
-        chat.addMessage(new Message(Author.User, userName, query));
         userName = prefs.getUserName() + ": ";
+        chat.addMessage(new Message(Author.User, userName, query));
         Spannable user = new SpannableString(userName);
         user.setSpan(new ForegroundColorSpan(Color.parseColor("#006400")), 0, user.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         getTextView().append(user);
