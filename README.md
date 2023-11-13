@@ -54,7 +54,8 @@ Da ich den Usernamen zusammen mit der ensprechenden Message im Message Objekt al
 in die Textview einfach den ensprechenden Usernamen vorweg anhängen. Wichtig war noch die Überprüfung, ob der Username ChatGPT lautete, dann wurde der Name dunkle Rot eingefärbt,
 war das nicht der Fall wurde der Name dunkel Grün eingefärbt, da es sich dann um den spezifisch festgelegten Usernamen handelte.
 
-Zuletzt 
+Zuletzt hatte ich persönlich noch ein Problem damit, dass wenn der Nutzer einmal in das Texteingabefeld geklickt hatte dieses fokussiert blieb, was dazu führte, dass
+sich die Samsung Bildschirm Tastatur auch dann wieder öffnete, wenn der User irgendwann danach die Spracheingabe nutzte und diese abschließ.
 
 ## Fazit
 
