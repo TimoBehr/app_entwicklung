@@ -48,7 +48,13 @@ Antwort von ChatGPT in die Textview einzufügen. Der Fehler besagte, dass nur de
 Nachdem ich ein wenig zu dem Problem recherchiert hatte, konnte ich das Problem lösen, indem ich die Problemverusachenden Methodenaufrufe nun mithilfe von requireActivity
 und dem Runnable runOnUiThread auf dem Originalen UiThread laufen lasse.
 
-Das zweite Problem war, dass beim Rotieren des Bildschirmes zwar die View wieder mit den vorherigen Chat Messages wiederhergestellt wurde, nun jedoch die von mir hinzugefügten Usernamen und ihre Farben verschwunden waren.
+Das zweite Problem war, dass beim Rotieren des Bildschirmes zwar die View wieder mit den vorherigen Chat Messages wiederhergestellt wurde, nun jedoch die von mir hinzugefügten
+Usernamen und ihre Farben verschwunden waren. Dies ließ sich lösen, indem ich in dem von Ihrem Branch stammenden updateTextView Methode entsprechend anpasste.
+Da ich den Usernamen zusammen mit der ensprechenden Message im Message Objekt als Erweiterung gespeichert hatte, konnte ich vor jedem hinzufügen einer Message
+in die Textview einfach den ensprechenden Usernamen vorweg anhängen. Wichtig war noch die Überprüfung, ob der Username ChatGPT lautete, dann wurde der Name dunkle Rot eingefärbt,
+war das nicht der Fall wurde der Name dunkel Grün eingefärbt, da es sich dann um den spezifisch festgelegten Usernamen handelte.
+
+Zuletzt 
 
 ## Fazit
 
