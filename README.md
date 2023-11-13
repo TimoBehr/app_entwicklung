@@ -39,7 +39,7 @@ Die Erweiterungen sollen bei vorhergesehener Benutzung keine Fehler produzieren 
 
 
 ## Probleme
-Während der Zeit des programmierens traten drei "größere" Errors auf, welche ich beheben durfte.
+Während der Zeit des programmierens traten drei "größere" Probleme auf, welche ich beheben durfte.
 
 Das erste Problem trat auf nachdem ich die neue Scroll View und innerhalb dieser die Textview hinzugefügt hatte.
 Genau genommen wurde der Fehler durch den Aufruf der TextView mithilfe der ID ausgelöst und zwar immer dann, wenn
