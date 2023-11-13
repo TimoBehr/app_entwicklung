@@ -3,6 +3,13 @@
 ## Einleitung
 Die Aufgabe war es den in den Vorlesungen zusammen erstellten App-Stand mit einer eigenen Erweiterung zu versehen.
 
+Stand nach Vorlesung:
+Der User hat nach Start der App die Möglichkeit Fragen per Spracheingabe an die OpenAi zu senden. den für die Anfrage
+benötigten API-Key kann der Nutzer in den root_preferences, über das Menü mit dem Tab Einstellungen, speichern.
+Nach absenden der Frage wird sowohl die Frage als auch die Antwort von ChatGPT ohne weitere Kennzeichnung mit Abstand in der Textview ausgegeben.
+Außerdem wir die Antwort von ChatGpt noch laut vorgelesen. Der Chat wird samt Messages persistent gespeichert.
+
+Erweiterung:
 Als Erweiterung habe ich mich dazu entschieden, zum einen eine Scrollable View in das Fragment einzubauen, damit 
 der User bei längeren Chatverläufen nach oben und unten scrollen kann um sich diesen komplett anschauen zu können.
 Außerdem wollte ich noch vor die jeweilige Chatnachrich den Namen des entsprechenden Users setzen, damit man im Nachhinein
