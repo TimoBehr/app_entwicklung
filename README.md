@@ -16,8 +16,11 @@ Bisher gab es nämlich bei längeren Antworten auch das Problem, dass man die An
 das Antwortende jedoch noch nicht errreicht war und somit auch nicht lesbar war, die eventuell darauf folgende Frage und Antwort waren dann sogar gar nicht mehr zu sehen.
 Außerdem wollte ich noch vor die jeweilige Chatnachricht den Namen des entsprechenden Users setzen, damit man im Nachhinein
 noch erkennen kann wer welche Nachricht geschrieben hat. Es war bisher vor allem bei Antworten mit Absätzen oft nicht
-erkentlich wo die Frage und wo die Antwort anfingen oder aufhörten. Um das ganze noch mehr zu verdeutlichen sollten die Namen (User, und ChatGPT)
+erkentlich wo die Frage und wo die Antwort anfingen oder aufhörten. Um das Ganze noch mehr zu verdeutlichen sollten die Namen (User, und ChatGPT)
 in verschiedenen Farben gekennzeichnet werden.
 Der User sollte außerdem noch die Möglichkeit bekommen einen spezifischen Usernamen für die Anzeige in der Textview und der Speicherung in der Message einzugeben.
 Zuletzt wollte ich dem User noch die Eingabe seiner Frage in Textform ermöglichen, sodass sowohl die schon vorhandene Spracheingabe
 als auch die Texteingabe für Fragen an die OpenAi genutzt werden können.
+
+## Anforderungen
+Die Scrollable View soll das fehlerfreie scrollen innerhalb der Chat Anzeige ermöglichen.
