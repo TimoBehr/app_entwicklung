@@ -5,7 +5,7 @@ Die Aufgabe war es den in den Vorlesungen zusammen erstellten App-Stand mit eine
 
 ### Stand nach Vorlesung:
 Der User hat nach Start der App die Möglichkeit Fragen per Spracheingabe an die OpenAi zu senden. den für die Anfrage
-benötigten API-Key kann der Nutzer in den root_preferences, über das Menü mit dem Tab Einstellungen, speichern.
+benötigten API-Key kann der Nutzer in den root_preferences, über das Menü mit dem Tab Einstellungen, persistent speichern.
 Nach absenden der Frage wird sowohl die Frage als auch die Antwort von ChatGPT ohne weitere Kennzeichnung mit Abstand in der Textview ausgegeben.
 Außerdem wir die Antwort von ChatGpt noch laut vorgelesen. Der Chat wird mit allen Messages persistent gespeichert.
 
