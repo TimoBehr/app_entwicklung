@@ -24,3 +24,9 @@ als auch die Texteingabe für Fragen an die OpenAi genutzt werden können.
 
 ## Anforderungen
 Die Scrollable View soll das fehlerfreie scrollen innerhalb der Chat Anzeige ermöglichen.
+Der User kann seinen Namen jederzeit ändern und der Name bleibt auch über einen Neustart der App hinweg erhalten.
+Der Username soll in dem Einstellungs-Tab festgelegt werden können.
+Der Username soll in einem dunklen grün und der Name ChatGPT in einem dunklen Rot ausgegeben werden.
+Der entsprechende Name wird vor jede einzelne Chatnachricht zur Kennzeichnung geschrieben.
+
+
