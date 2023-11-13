@@ -40,12 +40,15 @@ Die Erweiterungen sollen bei vorhergesehener Benutzung keine Fehler produzieren 
 
 ## Probleme
 Während der Zeit des programmierens traten drei "größere" Errors auf, welche ich beheben durfte.
+
 Das erste Problem trat auf nachdem ich die neue Scroll View und innerhalb dieser die Textview hinzugefügt hatte.
 Genau genommen wurde der Fehler durch den Aufruf der TextView mithilfe der ID ausgelöst und zwar immer dann, wenn
 ich die Methode welche mir die Textview zurücklieferte innerhalb des Background Threads benutzte um dort zum Beispiel die
 Antwort von ChatGPT in die Textview einzufügen. Der Fehler besagte, dass nur der OriginalThread, welcher die View erzeugt hatte diese auch verändern kann.
 Nachdem ich ein wenig zu dem Problem recherchiert hatte, konnte ich das Problem lösen, indem ich die Problemverusachenden Methodenaufrufe nun mithilfe von requireActivity
 und dem Runnable runOnUiThread auf dem Originalen UiThread laufen lasse.
+
+Das zweite Problem war, dass beim Rotieren des Bildschirmes zwar die View wieder mit den vorherigen Chat Messages wiederhergestellt wurde, nun jedoch die von mir hinzugefügten Usernamen und ihre Farben verschwunden waren.
 
 ## Fazit
 
