@@ -31,5 +31,6 @@ Der entsprechende Name wird vor jede einzelne Chatnachricht zur Kennzeichnung ge
 Der Username soll außerdem zusammen mit den bereits vorhanden Message Komponenten innerhalb des jeweiligen Message Objektes gespeichert werden.
 Die Texteingabe soll mit Enter oder Bestätigen die Frage an die API senden.
 Wenn sich Text innerhalb des Eingabefeldes befindet soll sich der Spracheingabe-Button wie ein Bestätigen für die Texteingabe verhalten.
+Die Erweiterungen sollen bei vorhergesehener Benutzung keine Fehler produzieren können.
 
 
