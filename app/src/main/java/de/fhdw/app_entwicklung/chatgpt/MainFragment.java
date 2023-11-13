@@ -97,9 +97,9 @@ public class MainFragment extends Fragment {
                 getPlainTextField().setText("");
             }else getTextFromSpeech.launch(new LaunchSpeechRecognition.SpeechRecognitionArgs(Locale.GERMAN));});
 
-        getPlainTextField().setOnKeyListener((view1, i, keyEvent) -> {
+        getPlainTextField().setOnKeyListener((view1, keyCode, keyEvent) -> {
             if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) &&
-                    (i == KeyEvent.KEYCODE_ENTER)) {
+                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
                 openAiRequest(getPlainTextField().getText().toString());
                 getPlainTextField().setText("");
                 return true;
@@ -169,7 +169,6 @@ public class MainFragment extends Fragment {
     }
 
     private EditText getPlainTextField() {
-        //noinspection ConstantConditions
         return getView().findViewById(R.id.plainText);
     }
 
