@@ -56,6 +56,8 @@ war das nicht der Fall wurde der Name dunkel Grün eingefärbt, da es sich dann 
 
 Zuletzt hatte ich persönlich noch ein Problem damit, dass wenn der Nutzer einmal in das Texteingabefeld geklickt hatte dieses fokussiert blieb, was dazu führte, dass
 sich die Samsung Bildschirm Tastatur auch dann wieder öffnete, wenn der User irgendwann danach die Spracheingabe nutzte und diese abschließ.
+Beheben konnte ich dieses "Problem", indem ich jedesmal, wenn der onClickListener des Spracheingabe Buttons aufgerufen wurde (Der Nutzer also auf den Knopf für die
+Spracheingabe drückte), mir das Eingabefeld mit der ID holte und bei diesem den Fokus zurücksetzte.
 
 ## Fazit
 
