@@ -28,5 +28,8 @@ Der User kann seinen Namen jederzeit ändern und der Name bleibt auch über eine
 Der Username soll in dem Einstellungs-Tab festgelegt werden können.
 Der Username soll in einem dunklen grün und der Name ChatGPT in einem dunklen Rot ausgegeben werden.
 Der entsprechende Name wird vor jede einzelne Chatnachricht zur Kennzeichnung geschrieben.
+Der Username soll außerdem zusammen mit den bereits vorhanden Message Komponenten innerhalb des jeweiligen Message Objektes gespeichert werden.
+Die Texteingabe soll mit Enter oder Bestätigen die Frage an die API senden.
+Wenn sich Text innerhalb des Eingabefeldes befindet soll sich der Spracheingabe-Button wie ein Bestätigen für die Texteingabe verhalten.
 
 
