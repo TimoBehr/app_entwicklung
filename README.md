@@ -42,6 +42,8 @@ hat der User nun die Möglichkeit nach oben und unten zu scrollen. Wie hier an d
 
 <img src="https://github.com/TimoBehr/app_entwicklung/assets/147406630/bae23490-1582-449b-8811-5a643de4a246" width="250"/>
 
+
+
 Als nächstes fügte ich vor jeder Ausgabe einer Frage oder Antwort in der View zunächst festcodierte Namen für den User und ChatGPT ein. Für eine eindeutige
 Unterscheidung änderte ich dann die Farbe des Users auf ein dunkles Grün und die Farbe von ChatGPT auf ein dunkles Rot. Für diese Funktion schrieb ich eine eigene Methode
 "colorChange", welche einen String (text) und einen String (Farbcode) übergeben bekommt. Mithilfe dieser wird ein sogenannter Spannable angelegt, welche die gesamte Spanne
@@ -50,6 +52,15 @@ beispielsweise in eine Textview eingefügt werden. Die Methode hab ich immer dan
 Das ganze sieht dann so aus:
 
 <img src="https://github.com/TimoBehr/app_entwicklung/assets/147406630/a46aa2a2-9b57-420d-9aca-bdc0c621fcfc" width="250"/>
+
+
+
+
+
+Wahrend der programmierung der Erweiterungen, löste ich noch ein paar kleiner Probleme Probleme wie beispielsweise eine not null Überprüfung bei der Spracheingabe, damit
+beim Abbruch der Spracheingabe ohne zu sprechen das Programm nicht abstürzt.
+
+Als Hauptfeature wollte ich dem Nutzer die Eingabe seiner Fragen auch in Textform ermöglichen. Dazu fügte ich zunächst ein PlainText Feld innerhalb der fragment_main.xml ein und vergabe eine sinnvolle Id sowie Constraints
 
 ## Probleme
 Während der Zeit des programmierens traten drei "größere" Probleme auf, welche ich beheben durfte.
