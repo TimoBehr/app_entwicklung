@@ -40,6 +40,7 @@ dieses ließ sich in der fragment_main.xml an der Stelle, wo sich vorher die ein
 der Scrollview noch eine TextView ein, damit ich dort wie im Vorhinein den Chat ausgeben kann. Dadurch das sich die TextView nun jedoch in einer ScrollView befindet,
 hat der User nun die Möglichkeit nach oben und unten zu scrollen. Wie hier an der rechten Seite des Bildes zusehen:
 
+<img src="https://github.com/TimoBehr/app_entwicklung/assets/147406630/bae23490-1582-449b-8811-5a643de4a246" width="250"/>
 
 ## Probleme
 Während der Zeit des programmierens traten drei "größere" Probleme auf, welche ich beheben durfte.
