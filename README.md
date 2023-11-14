@@ -112,3 +112,8 @@ Alle geplanten Erweiterungen und Ihre Anforderungen konnten letztendlich, so wie
 Der Zeitliche Aufwand des Projektes, war bei der Programmierungetwas höher als erwartet, da ja doch ein paar Probleme über den Zeitraum verteilt gelöst von mir werden mussten.
 Jedoch war ich mit dem schreiben der Dokumentation und der Präsentation etwas schneller als gedacht. Aus diesem Grund war der gesamte Zeitliche Aufwand in etwa gleich dem erwarteten
 Aufwand. Das Projekt hat mir viel Spaß gemacht und ich hätte mir gewünscht, das ganze noch in einem größeren Umfang und über einen längeren Zeitraum hätte machen können.
+
+
+
+
+
