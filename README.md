@@ -35,7 +35,10 @@ Die Erweiterungen sollen bei vorhergesehener Benutzung keine Fehler produzieren 
 
 ## Umsetzung
 
-
+Als erstes begann ich damit die Anzeige des Chats scrollable zu machen. Damit man in der View des Fragments scrollen kann benötigt man das Element ScrollView,
+dieses ließ sich in der fragment_main.xml an der Stelle, wo sich vorher die einfache Textview befand, einfügen und konfigurieren. Außerdem fügte ich innerhalb
+der Scrollview noch eine TextView ein, damit ich dort wie im Vorhinein den Chat ausgeben kann. Dadurch das sich die TextView nun jedoch in einer ScrollView befindet,
+hat der User nun die Möglichkeit nach oben und unten zu scrollen. Wie hier an der rechten Seite des Bildes zusehen:
 
 
 ## Probleme
