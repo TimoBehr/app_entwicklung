@@ -56,9 +56,6 @@ Das ganze sieht dann so aus:
 
 
 
-Wahrend der programmierung der Erweiterungen, löste ich noch ein paar kleiner Probleme Probleme wie beispielsweise eine not null Überprüfung bei der Spracheingabe, damit
-beim Abbruch der Spracheingabe ohne zu sprechen das Programm nicht abstürzt.
-
 Als Hauptfeature wollte ich dem Nutzer die Eingabe seiner Fragen auch in Textform ermöglichen. Dazu fügte ich zunächst ein PlainText Feld innerhalb der fragment_main.xml
 ein und vergab sinnvolle Constraints und eine Id. Wie auch schon bei der Textview programmierte ich hier eine Methode welche das PlainText Feld mithilfe der Id zurückgibt.
 Damit ich nicht für die Texteingabe den gesamten Code für die den OpenAi Request nochmal kopieren musste, erstellte ich eine Methode "openAiRequest", welche den Code der Request
@@ -78,6 +75,12 @@ Damit beim neuladen der View, also zum Beispiel beim drehen des Bildschirms, ode
 entsprechenden message zusammen zu speichern und jederzeit wieder auslesen zu können.
 
 <img src="https://github.com/TimoBehr/app_entwicklung/assets/147406630/57a16096-ca06-49a5-ae17-8d686e239080" width="250"/>
+
+
+
+Während der programmierung der Erweiterungen, löste ich noch ein paar kleiner Probleme Probleme wie beispielsweise eine not null Überprüfung bei der Spracheingabe, damit
+beim Abbruch der Spracheingabe ohne zu sprechen das Programm nicht abstürzt. Außerdem ersetzte ich alle hardcodierten Strings in den Layouts durch entsprechende String Ressourcen
+und erstellte auch in den DE Strings eine entsprechende Übersetzung.
 
 ## Probleme
 Während der Zeit des programmierens traten drei "größere" Probleme auf, welche ich beheben durfte.
@@ -101,4 +104,7 @@ Beheben konnte ich dieses "Problem", indem ich jedesmal, wenn der onClickListene
 Spracheingabe drückte), mir das Eingabefeld mit der ID holte und bei diesem den Fokus zurücksetzte.
 
 ## Fazit
-
+Alle geplanten Erweiterungen und Ihre Anforderungen konnten letztendlich, so wie ich mir das vorgestellt hatte, umgesetzt werden.
+Der Zeitliche Aufwand des Projektes, war bei der Programmierungetwas höher als erwartet, da ja doch ein paar Probleme über den Zeitraum verteilt gelöst von mir werden mussten.
+Jedoch war ich mit dem schreiben der Dokumentation und der Präsentation etwas schneller als gedacht. Aus diesem Grund war der gesamte Zeitliche Aufwand in etwa gleich dem erwarteten
+Aufwand. Das Projekt hat mir viel Spaß gemacht und ich hätte mir gewünscht, das ganze noch in einem größeren Umfang und über einen längeren Zeitraum hätte machen können.
