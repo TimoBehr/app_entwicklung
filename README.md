@@ -38,7 +38,8 @@ Die Erweiterungen sollen bei vorhergesehener Benutzung keine Fehler produzieren 
 Als erstes begann ich damit die Anzeige des Chats scrollable zu machen. Damit man in der View des Fragments scrollen kann benötigt man das Element ScrollView,
 dieses ließ sich in der fragment_main.xml an der Stelle, wo sich vorher die einfache Textview befand, einfügen und konfigurieren. Außerdem fügte ich innerhalb
 der Scrollview noch eine TextView ein, damit ich dort wie im Vorhinein den Chat ausgeben kann. Dadurch das sich die TextView nun jedoch in einer ScrollView befindet,
-hat der User nun die Möglichkeit nach oben und unten zu scrollen. Wie hier an der rechten Seite des Bildes zusehen:
+hat der User nun die Möglichkeit nach oben und unten zu scrollen. Um die Textview innerhalb des Codes ansprechen zu können, schrieb ich eine Methode welche sich die
+Textview mithilfe der id holt und zurückgibt. Wie hier an der rechten Seite des Bildes zusehen:
 
 <img src="https://github.com/TimoBehr/app_entwicklung/assets/147406630/bae23490-1582-449b-8811-5a643de4a246" width="250"/>
 
@@ -55,12 +56,14 @@ Das ganze sieht dann so aus:
 
 
 
-
-
 Wahrend der programmierung der Erweiterungen, löste ich noch ein paar kleiner Probleme Probleme wie beispielsweise eine not null Überprüfung bei der Spracheingabe, damit
 beim Abbruch der Spracheingabe ohne zu sprechen das Programm nicht abstürzt.
 
-Als Hauptfeature wollte ich dem Nutzer die Eingabe seiner Fragen auch in Textform ermöglichen. Dazu fügte ich zunächst ein PlainText Feld innerhalb der fragment_main.xml ein und vergabe eine sinnvolle Id sowie Constraints
+Als Hauptfeature wollte ich dem Nutzer die Eingabe seiner Fragen auch in Textform ermöglichen. Dazu fügte ich zunächst ein PlainText Feld innerhalb der fragment_main.xml
+ein und vergab sinnvolle Constraints und eine Id. Wie auch schon bei der Textview programmierte ich hier eine Methode welche das PlainText Feld mithilfe der Id zurückgibt.
+Damit ich nicht für die Texteingabe den gesamten Code für die den OpenAi Request nochmal kopieren musste, erstellte ich eine Methode "openAiRequest", welche den Code der Request
+enthält, der sowohl bei der Texteingabe als such bei der Spracheingabe identisch ist. Die Spracheingabe und die Texteingabe rufen diese Methode einfach mithilfe das Query Strings auf.
+
 
 ## Probleme
 Während der Zeit des programmierens traten drei "größere" Probleme auf, welche ich beheben durfte.
