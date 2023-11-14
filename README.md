@@ -63,7 +63,16 @@ Als Hauptfeature wollte ich dem Nutzer die Eingabe seiner Fragen auch in Textfor
 ein und vergab sinnvolle Constraints und eine Id. Wie auch schon bei der Textview programmierte ich hier eine Methode welche das PlainText Feld mithilfe der Id zurückgibt.
 Damit ich nicht für die Texteingabe den gesamten Code für die den OpenAi Request nochmal kopieren musste, erstellte ich eine Methode "openAiRequest", welche den Code der Request
 enthält, der sowohl bei der Texteingabe als such bei der Spracheingabe identisch ist. Die Spracheingabe und die Texteingabe rufen diese Methode einfach mithilfe das Query Strings auf.
+Damit nun aber überhaupt eine Methode zur Richtigen Zeit für die Testeingabe aufgerufen werden kann, setzte ich innerhalb der "onViewCreated" (damit die View auf jeden Fall schon
+erstellt wurde und es keine Fehler beim "getTextView" gibt) einen "onKeyListener" auf das PlainText Feld auf. Innerhalb dieses Listeners kann man gewisse KeyEvents wie einen Tastendruck nach unten oder den Druck einer gewissen Taste abfragen. Somit entschied ich mich dazu, dass immer wenn bei der Eingabe eine Taste gedrückt und diese Taste die Enter, bzw. bei der Samsung Tastatur die Bestätigen Taste ist, der openAiRequest mit dem Inhalt des Textfeldes als Query ausgeführt wird.
+Außerdem passte ich die Logik im OnClickListener des Spracheingabe Buttons so an, dass solange sich Text innerhalb der Eingabe befindet, der Button statt der Spracheingabe zuerst
+den Request mit dem Inhalt des PlainText Feldes startet. Nach jedem Request wird das Textfeld geleert.
 
+<img src="https://github.com/TimoBehr/app_entwicklung/assets/147406630/7908907b-231d-4897-8057-f1226b1b3e27" width="250"/>
+
+
+
+d
 
 ## Probleme
 Während der Zeit des programmierens traten drei "größere" Probleme auf, welche ich beheben durfte.
