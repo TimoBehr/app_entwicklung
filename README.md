@@ -72,7 +72,12 @@ den Request mit dem Inhalt des PlainText Feldes startet. Nach jedem Request wird
 
 
 
-d
+Zuletzt wollte ich noch, dass der User seinen Anzeige Namen selber festlegen kann. Dafür fügte ich ein neues Feld mit der Überschrift "Name" innerhalb der root_preferences ein.
+Nun kann der User seinen Name über den Einstellungstab des Feldes eingeben. Diesen Usernamen lese ich dann als String jedesmal aus, wenn eine neue Request gestartet wird, damit beim Anzeigen auch immer der aktuellste Name zu sehen ist. Den festcodierten Namen ersetzte ich dann durch die Variable in den ich den Namen jedesmal auslese.
+Damit beim neuladen der View, also zum Beispiel beim drehen des Bildschirms, oder auch in dem persistent gespeichertem Chat der Chatverlauf samt Usernamen auslesbar ist, entschied ich mich dazu innerhalb der Message Klasse noch zusätzlich einen String authorName zu speichern. Diese Möglichkeit nutzte ich dann um den aktuellen Usernamen und den Namen ChatGPT mit der
+entsprechenden message zusammen zu speichern und jederzeit wieder auslesen zu können.
+
+<img src="https://github.com/TimoBehr/app_entwicklung/assets/147406630/57a16096-ca06-49a5-ae17-8d686e239080" width="250"/>
 
 ## Probleme
 Während der Zeit des programmierens traten drei "größere" Probleme auf, welche ich beheben durfte.
